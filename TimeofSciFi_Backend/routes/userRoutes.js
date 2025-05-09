@@ -20,7 +20,6 @@ const authenticateUser = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    // Only log errors that aren't token expiration
     if (error.name !== 'TokenExpiredError') {
       console.error('Authentication error:', error.message);
     }
@@ -109,7 +108,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(
       payload,
       JWT_SECRET,
-      { expiresIn: '100y' } // Set a very long expiration (100 years)
+      { expiresIn: '100y' }
     );
     
     res.json({
@@ -127,8 +126,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Recommendation Routes
-// Get all recommendations
 router.get('/recommendations', async (req, res) => {
   try {
     const recommendations = await Recommendation.find()
@@ -140,7 +137,6 @@ router.get('/recommendations', async (req, res) => {
   }
 });
 
-// Create a new recommendation
 router.post('/recommendations', authenticateUser, async (req, res) => {
   try {
     const { title, description, type, tags } = req.body;
@@ -149,27 +145,21 @@ router.post('/recommendations', authenticateUser, async (req, res) => {
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
 
-    // Create the recommendation object without tags first
     const recommendation = new Recommendation({
       title,
       description,
       type,
-      // Skip tags validation by not including it initially
       author: req.user.id
     });
 
-    // Save the recommendation first
     const savedRecommendation = await recommendation.save();
     
-    // If there are tags, update them directly in the database to bypass validation
     if (tags && Array.isArray(tags) && tags.length > 0) {
-      // Use direct MongoDB update to bypass Mongoose validation
       await Recommendation.updateOne(
         { _id: savedRecommendation._id },
-        { $set: { tags: tags.slice(0, 2) } } // Limit to max 2 tags
+        { $set: { tags: tags.slice(0, 2) } }
       );
       
-      // Update the returned object to include tags
       savedRecommendation.tags = tags.slice(0, 2);
     }
     
