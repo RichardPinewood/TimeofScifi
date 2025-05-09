@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Time of Sci-Fi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <style>
+    /* Navbar Styles */
+    .navbar {
+      background-color: #1a1a1a !important;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      z-index: 1050;
+    }
+    .navbar-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      color: #FFD166 !important;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px rgba(255, 209, 102, 0.6);
+      font-weight: 700;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+    .navbar-brand:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 12px rgba(255, 209, 102, 1);
+    }
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem 1rem;
+      transition: 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #FF5733;
+      background: rgba(255, 107, 53, 0.1);
+    }
+    .navbar-nav .nav-link.active {
+      color: #FF5733 !important;
+      font-weight: 600;
+    }
+    .navbar-toggler {
+      border: none;
+    }
+    .navbar-toggler-icon {
+      filter: invert(1);
+    }
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1a1a1a;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        border-top: 1px solid #333;
+        z-index: 1040;
+        padding: 1rem;
+      }
+    }
+
+    /* Recommendation Card */
+    .recommendation-card {
+      max-width: 500px;
+      margin: 80px auto;
+      border: 1px solid #FFD166;
+      background: black;
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .recommendation-card h5 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .recommendation-card h4 {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #FFD166;
+      margin-bottom: 10px;
+    }
+    .recommendation-card .form-label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      display: block;
+      color: white;
+    }
+    .recommendation-card .form-control {
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 0.95rem;
+      background-color: #f8f8f8;
+    }
+    .recommendation-card textarea.form-control {
+      resize: vertical;
+    }
+    .type-button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .type-button:hover {
+      background-color: #FFD166;
+      color: black;
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 12px;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .btn-gradient:hover {
+      opacity: 0.9;
+    }
+    /* Tags Input */
+    .tags-input {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 5px 10px;
+      min-height: 50px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f8f8f8;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+    .tags-input input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 6px;
+      background: transparent;
+      min-width: 150px;
+      font-size: 0.9rem;
+      color: #000000;
+    }
+    .tag {
+      background: #6a11cb;
+      color: white;
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin: 3px;
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .tag i {
+      font-size: 14px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    .text-white {
+      color: white !important;
+    }
+  </style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">Time of Sci-Fi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="watch_later.html">Watch Later</a></li>
+        <li class="nav-item"><a class="nav-link active" href="recommend.html">Share Something</a></li>
+        <li class="nav-item"><a class="nav-link" href="perfil.html">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Recommendation Container -->
+<div class="recommendations-container"></div>
+
+<!-- Recommendation Template -->
+<template id="recommendation-template">
+  <div class="card recommendation-card">
+    <div class="card-header">
+      <div class="card-author-info">
+        <i class="fas fa-user"></i>
+        <span class="card-author"></span>
+      </div>
+      <h5 class="card-title"></h5>
+    </div>
+    
+    <p class="card-text"></p>
+    
+    <div class="card-meta">
+      <span class="recommendation-type"></span>
+      <div class="recommendation-tags"></div>
+    </div>
+    
+    <div class="card-footer-wrapper">
+      <div class="card-actions">
+        <div class="recommendation-date"></div>
+        <div class="interaction-buttons">
+          <button class="action-button">
+            <i class="far fa-bookmark"></i>
+            <span>Save</span>
+          </button>
+          <button class="action-button">
+            <i class="far fa-thumbs-up"></i>
+            <span>0</span>
+          </button>
+        </div>
+      </div>
+      <button class="comments-button">
+        <i class="far fa-comment"></i>
+        <span>Discussion</span>
+      </button>
+    </div>
+  </div>
+</template>
+
+<!-- Recommendation Form Card -->
+<div class="recommendation-card">
+  <div class="d-flex align-items-center mb-4">
+    <h5 class="mb-0">Share something interesting</h5>
+  </div>
+
+  <div class="mb-3">
+    <h6>Title</h6>
+    <input type="text" class="form-control" id="recommendationTitle" placeholder="What is on your mind ?">
+  </div>
+
+  <div class="mb-3">
+    <h6>Description</h6>
+    <textarea class="form-control" id="recommendationSynopsis" rows="4" placeholder="A brief description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <h4>Type</h4>
+    <div>
+      <button type="button" class="btn btn-outline-secondary type-button">Movie</button>
+      <button type="button" class="btn btn-outline-secondary type-button">TV Show</button>
+      <button type="button" class="btn btn-outline-secondary type-button">Book</button>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h6>Tags</h6>
+    <small class="text-white d-block mb-2">
+      ⚠️ Enter your own custom tags or use suggestions <br/>
+      (e.g., "Cyberpunk", "Time Travel", "1980s", etc). Max 2 tags!
+    </small>
+    <div class="tags-input" id="tagsInput">
+      <input type="text" id="tagInput" placeholder="Type and press Enter">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-gradient" id="postRecommendationBtn">Post Recommendation</button>
+</form>
+
+<!-- Javascript Files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+<script src="logout_redirect.js"></script>
+<script src="navlink_active.js"></script>
+<script src="tag_system.js"></script>
+<script src="button_type.js"></script>
+<script src="recommendations_data.js"></script>
+</body>
+</html>

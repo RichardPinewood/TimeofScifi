@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ZethiraHD</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      .container {
+        width: 320px;
+        background: black;
+        padding: 25px;
+        border-radius: 8px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      form div {
+        position: relative;
+        margin-bottom: 20px;
+      }
+   
+      label {
+        position: absolute;
+        top: -8px;
+        left: 15px;
+        font-size: 12px;
+        color: #fff;
+        background: black;
+        padding: 0 5px;
+        pointer-events: none;
+      }
+
+      input:focus {
+        border-color: #fff;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      }
+
+      button {
+        display: block;      
+        width: 60%;          
+        padding: 12px;
+        background: black;
+        border: 1px solid white;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 0 auto;  
+      }    
+
+      p {
+        text-align: center;
+        margin-top: 10px;
+        color: white;
+      }
+
+      a {
+        color: white;
+        font-weight: bold;
+        text-decoration: inline;
+      }
+    </style>
+
+    <div class="container">
+      <h2>Criar Conta</h2>
+      <div id="password-errors" class="alert alert-danger" style="display:none;"></div>
+      <form id="signupForm">
+        <div>
+          <input type="text" id="username" name="username" required placeholder=" " />
+          <label for="username">Nome Pessoal</label>
+        </div>
+        <div>
+          <input type="email" id="email" name="email" required placeholder=" " />
+          <label for="email">Email</label>
+        </div>
+        <div>
+          <input type="password" id="password" name="password" required placeholder=" " />
+          <label for="password">Palavra-Passe</label>
+        </div>
+        <div>
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" " />
+          <label for="confirmPassword">Confirmar Palavra-Passe</label>
+        </div>
+        <button type="submit">Criar Conta</button>
+      </form>
+      <p>Já tens uma conta? <a href="login.html">Clica aqui</a></p>
+    </div>
+    <script src="signup_validate.js"></script>
+  </body>
+</html>

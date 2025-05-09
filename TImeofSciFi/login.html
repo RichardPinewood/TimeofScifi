@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        margin: 0; 
+      }
+
+      .container {
+        width: 320px;
+        background: black;
+        padding: 25px;
+        border-radius: 8px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      form div {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      button {
+        display: block;
+        width: 60%;
+        padding: 12px;
+        background: black;
+        border: 1px solid white;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 0 auto; 
+      }
+
+      p {
+        text-align: center;
+        margin-top: 10px;
+        color: white;
+      }
+
+      a {
+        color: white;
+        font-weight: bold;
+        text-decoration: inline;
+      }
+    </style>
+    
+    <div class="container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div>
+          <input type="email" id="email" name="email" required placeholder=" " />
+          <label for="email">Email</label>
+        </div>
+        <div>
+          <input type="password" id="password" name="password" required placeholder=" " />
+          <label for="password">Palavra-Passe</label>
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+      <p>
+        Don't have an account ?
+        <a href="signup.html">Click here</a>
+      </p>
+    </div>
+
+    <script src="login_validate.js"></script>
+
+  </body>
+</html>

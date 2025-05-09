@@ -1,0 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Base styles */
+html, body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  background: linear-gradient(to right, #111827, #1F2937);
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  max-height: 100vh;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #FFD166 #262626; /* For Firefox */
+}
+
+/* Webkit scrollbar styles */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #262626;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #FFD166;
+  border-radius: 10px;
+}
+
+/* Typography styles */
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.centered-title {
+  text-align: center;
+}
+
+.left-title {
+  text-align: left;
+}
+
+/* Navigation styles */
+.navbar {
+  background-color: #1a1a1a;
+}
+
+.navbar-brand {
+  font-family: "Orbitron", sans-serif;
+  font-size: 28px;
+  color: #FFD166;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.6);
+}
+
+.navbar-brand:hover {
+  color: #FFD166;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  color: #FF5733;
+}
+
+.navbar-nav .nav-link.active {
+  color: #FF5733 !important;
+  font-weight: 600;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    padding: 1rem;
+    border-top: 1px solid #333;
+    z-index: 1050;
+  }
+}
+
+/* Card Meta */
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.recommendation-type {
+  background: transparent;
+  color: #FFD166;
+  font-weight: 600;
+  padding: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tags */
+.recommendation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: #6a11cb;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 12px;
+  margin: 3px;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.recommendation-tags .badge {
+  background-color: #6a11cb !important;
+  color: white !important;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  border: none;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+/* Card Footer */
+.card-footer-wrapper {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recommendation-date {
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.interaction-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.action-button {
+  background: transparent;
+  border: none;
+  color: #b0b0b0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  color: #FFD166;
+}
+
+.action-button i {
+  font-size: 14px;
+}
+
+.comments-button {
+  background: rgba(255, 209, 102, 0.1);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  color: #FFD166;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.comments-button:hover {
+  background: rgba(255, 209, 102, 0.2);
+  transform: translateY(-1px);
+}
+
+.container-1{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    padding: 20px; 
+    text-align: center;
+    box-shadow: 0 50px 29px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    box-sizing: border-box;
+    
+}
+
+.container-1 label {
+    text-align: left;
+    font-size: 20px;
+    margin: 4px 0;
+    display: block;
+    font-family: sans-serif;
+}
+
+.container-1 input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.container-1 button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.container-1 h2 {
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+.container-1 
+.login-link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+}
+
+.underline {
+    color: black;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+input {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding: 12px 10px;
+    background: black;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px black inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+
+  input:focus {
+    border-color: #fff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  
+  label {
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    font-size: 12px;
+    color: #fff;
+    background: black;
+    padding: 0 5px;
+    pointer-events: none;
+  }
+
+  input[type="file"] {
+    display: none; 
+}
+
+
+
+
+  
