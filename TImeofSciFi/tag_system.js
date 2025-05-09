@@ -2,8 +2,6 @@ const tagsInputContainer = document.getElementById('tagsInput');
 const tagInput = document.getElementById('tagInput');
 let tags = [];
 
-// Custom tags are now enabled - no predefined list needed
-
 
 tagInput.addEventListener('keydown', function(event) {
   if (event.key === 'Enter' && tagInput.value.trim() !== '') {
@@ -16,7 +14,6 @@ tagInput.addEventListener('keydown', function(event) {
       return;
     }
 
-    // Allow any custom tag (no validation against allowedTags)
     if (!tags.includes(tagText)) {
       tags.push(tagText);
       createTagElement(tagText);
@@ -37,13 +34,11 @@ function removeTag(tagText) {
   renderTags();
 }
 
-// Simple tag input without suggestions
+
 const recommendationTagInput = document.getElementById('tagInput');
 
-// No suggestions or dropdown functionality
-
 function renderTags() {
-  // Clear all tags (except input)
+
   tagsInputContainer.querySelectorAll('.tag').forEach(tagEl => tagEl.remove());
   tags.forEach(tag => createTagElement(tag));
 }

@@ -29,20 +29,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let transformY = currentPosition * itemHeight;
     
     if (currentPosition === maxPosition) {
-      // When at the last position, use a direct calculation to ensure last button visibility
+
       const lastButtonIndex = genreButtons.length - 1;
       const containerElement = document.querySelector('.genre-list');
       
-      // Calculate how much space we want to show at the bottom of the last button (in pixels)
+
       const bottomPadding = 10;
       
-      // Calculate the proper transform so the last button is visible with padding
+
       const lastButtonBottom = genreButtons[lastButtonIndex].offsetTop + genreButtons[lastButtonIndex].offsetHeight + bottomPadding;
       const containerHeight = containerElement.offsetHeight;
       
       transformY = lastButtonBottom - containerHeight;
       
-      // Safety check to avoid negative transform (which would push content down)
+
       transformY = Math.max(0, transformY);
     }
     

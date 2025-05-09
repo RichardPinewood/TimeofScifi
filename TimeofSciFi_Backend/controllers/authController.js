@@ -33,7 +33,7 @@ const register = async (req, res) => {
     const token = jwt.sign(
       { id: newUser._id, username: newUser.username },
       process.env.JWT_SECRET || require('../routes/userRoutes').JWT_CONFIG.secret,
-      { algorithm: 'HS256', expiresIn: '100y' } // Set a very long expiration (100 years)
+      { algorithm: 'HS256', expiresIn: '100y' }
     );
 
     res.json({ message: "Registration successful!", token });
@@ -70,7 +70,7 @@ const login = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET || require('../routes/userRoutes').JWT_CONFIG.secret,
-      { algorithm: 'HS256', expiresIn: '100y' } // Set a very long expiration (100 years)
+      { algorithm: 'HS256', expiresIn: '100y' }
     );
 
     res.json({ message: "Login successful!", token });

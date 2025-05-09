@@ -1,15 +1,11 @@
-// DOM elements
+
 const form = document.getElementById('signupForm');
 const usernameInput = document.getElementById('username');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirmPassword');
 
-/**
- * Validates the password strength
- * @param {string} password - The password to validate
- * @returns {Array} - Array of error messages or empty array if valid
- */
+
 function validatePassword(password) {
   const errors = [];
   
@@ -28,13 +24,9 @@ function validatePassword(password) {
   return errors;
 }
 
-/**
- * Sanitizes user input to prevent XSS attacks
- * @param {string} input - The input to sanitize
- * @returns {string} - Sanitized input
- */
+
 function sanitizeInput(input) {
-  // Basic sanitization - replace special characters
+
   return input.replace(/[&<>"']/g, (match) => {
     return {
       '&': '&amp;',
@@ -46,7 +38,7 @@ function sanitizeInput(input) {
   });
 }
 
-// Form submission event handler
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -55,7 +47,7 @@ form.addEventListener('submit', async (e) => {
   const password = passwordInput.value.trim();
   const confirmPassword = confirmPasswordInput.value.trim();
   
-  // Check if passwords match
+
   if (password !== confirmPassword) {
     alert('As senhas não correspondem');
     return;
@@ -88,7 +80,7 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    // Show loading indicator or disable button here if needed
+
     console.log('Attempting to register user:', { username: sanitizedUsername, email: sanitizedEmail });
     
     const response = await fetch('http://localhost:5000/auth/register', {
@@ -97,7 +89,7 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data),
     });
 
-    // Handle non-JSON responses
+
     const contentType = response.headers.get('content-type');
     let result;
     
@@ -111,14 +103,14 @@ form.addEventListener('submit', async (e) => {
 
     if (response.ok && result.token) {
       alert('Registro feito com sucesso!');
-      // Save user info
+
       localStorage.setItem('token', result.token);
       localStorage.setItem('user', JSON.stringify({
         username: sanitizedUsername,
         email: sanitizedEmail
       }));
-      // Redirect with correct path
-      window.location.href = 'home.html'; // Removed the leading slash
+
+      window.location.href = 'home.html';
     } else {
       alert(result.message || 'Falha no registro. Por favor, tente novamente.');
     }
@@ -128,7 +120,7 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
-// Add extra validation for better UX
+
 const passwordStrengthIndicator = document.createElement('div');
 passwordStrengthIndicator.className = 'password-strength';
 passwordStrengthIndicator.style.display = 'none';
@@ -136,10 +128,10 @@ passwordStrengthIndicator.style.marginTop = '5px';
 passwordStrengthIndicator.style.fontSize = '12px';
 passwordStrengthIndicator.style.color = '#fff';
 
-// Insert the indicator after the password field
+
 passwordInput.parentNode.appendChild(passwordStrengthIndicator);
 
-// Real-time password validation
+
 passwordInput.addEventListener('input', function() {
   const password = this.value.trim();
   const errors = validatePassword(password);
@@ -159,7 +151,7 @@ passwordInput.addEventListener('input', function() {
   }
 });
 
-// Real-time password match validation
+
 confirmPasswordInput.addEventListener('input', function() {
   const password = passwordInput.value.trim();
   const confirmPassword = this.value.trim();
