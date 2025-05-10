@@ -12,12 +12,12 @@
 </head>
 <body>
   <style>
-    /* Navbar Styles */
     .navbar {
       background-color: #1a1a1a !important;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
       z-index: 1050;
     }
+
     .navbar-brand {
       font-family: 'Orbitron', sans-serif;
       font-size: 28px;
@@ -28,29 +28,36 @@
       font-weight: 700;
       transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
+
     .navbar-brand:hover {
       transform: scale(1.05);
       text-shadow: 0 0 12px rgba(255, 209, 102, 1);
     }
+
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.9);
       padding: 0.5rem 1rem;
       transition: 0.3s ease;
     }
+
     .navbar-nav .nav-link:hover {
       color: #FF5733;
       background: rgba(255, 107, 53, 0.1);
     }
+
     .navbar-nav .nav-link.active {
       color: #FF5733 !important;
       font-weight: 600;
     }
+
     .navbar-toggler {
       border: none;
     }
+
     .navbar-toggler-icon {
       filter: invert(1);
     }
+
     @media (max-width: 991.98px) {
       .navbar-collapse {
         position: absolute;
@@ -65,7 +72,6 @@
       }
     }
 
-    /* Recommendation Card */
     .recommendation-card {
       max-width: 500px;
       margin: 80px auto;
@@ -77,17 +83,20 @@
       padding: 30px;
       font-family: 'Poppins', sans-serif;
     }
+
     .recommendation-card h5 {
       font-weight: 700;
       font-size: 1.5rem;
       margin-bottom: 20px;
     }
+
     .recommendation-card h4 {
       font-weight: 600;
       font-size: 1.3rem;
       color: #FFD166;
       margin-bottom: 10px;
     }
+
     .recommendation-card .form-label {
       font-weight: 600;
       font-size: 1rem;
@@ -95,6 +104,7 @@
       display: block;
       color: white;
     }
+
     .recommendation-card .form-control {
       border-radius: 8px;
       border: 1px solid #ccc;
@@ -103,9 +113,11 @@
       font-size: 0.95rem;
       background-color: #f8f8f8;
     }
+
     .recommendation-card textarea.form-control {
       resize: vertical;
     }
+
     .type-button {
       margin-right: 10px;
       margin-bottom: 10px;
@@ -115,10 +127,12 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+
     .type-button:hover {
       background-color: #FFD166;
       color: black;
     }
+
     .btn-gradient {
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       border: none;
@@ -130,10 +144,11 @@
       width: 100%;
       font-size: 1rem;
     }
+
     .btn-gradient:hover {
       opacity: 0.9;
     }
-    /* Tags Input */
+
     .tags-input {
       display: flex;
       flex-wrap: wrap;
@@ -177,7 +192,6 @@
     }
   </style>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
     <a class="navbar-brand" href="home.html">Time of Sci-Fi</a>
