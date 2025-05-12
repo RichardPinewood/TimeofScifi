@@ -293,6 +293,60 @@
   <button type="submit" class="btn btn-gradient" id="postRecommendationBtn">Post Recommendation</button>
 </form>
 
+<!-- Discussion Modal -->
+<div class="modal fade" id="discussionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title">Discussion</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="comments-container">
+          <!-- Comments will be loaded here -->
+        </div>
+        <div class="comment-form-container mt-4">
+          <h6>Add your thoughts</h6>
+          <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="What do you think?"></textarea>
+          <button id="post-comment-btn" class="btn btn-primary">Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comment template -->
+<template id="comment-template">
+  <div class="comment">
+    <div class="comment-header d-flex align-items-center">
+      <span class="username fw-bold"></span>
+      <span class="comment-date text-muted ms-auto"></span>
+    </div>
+    <div class="comment-content mt-2"></div>
+    <div class="comment-actions mt-2">
+      <button class="btn btn-sm vote-btn upvote-btn">
+        <i class="bi bi-arrow-up"></i> <span class="upvote-count">0</span>
+      </button>
+      <button class="btn btn-sm vote-btn downvote-btn">
+        <i class="bi bi-arrow-down"></i> <span class="downvote-count">0</span>
+      </button>
+      <button class="btn btn-sm reply-btn">
+        <i class="bi bi-reply"></i> Reply
+      </button>
+    </div>
+    <div class="reply-form-container mt-2 d-none">
+      <textarea class="form-control reply-input" rows="2" placeholder="Write a reply..."></textarea>
+      <div class="mt-2">
+        <button class="btn btn-sm btn-primary submit-reply-btn">Reply</button>
+        <button class="btn btn-sm btn-link cancel-reply-btn">Cancel</button>
+      </div>
+    </div>
+    <div class="replies-container ms-4 mt-3">
+      <!-- Nested replies will go here -->
+    </div>
+  </div>
+</template>
+
 <!-- Javascript Files -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 <script src="logout_redirect.js"></script>
@@ -300,5 +354,6 @@
 <script src="tag_system.js"></script>
 <script src="button_type.js"></script>
 <script src="recommendations_data.js"></script>
+<script src="discussion.js"></script>
 </body>
 </html>

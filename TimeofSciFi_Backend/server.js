@@ -5,32 +5,18 @@ const cors = require('cors');
 const path = require('path');
 
 
-const authRoutes = require('./routes/userRoutes');
-const recommendationRoutes = require('./routes/userRoutes');
+// Import all routes from userRoutes
+const routes = require('./routes/userRoutes');
 
 const app = express();
 
 
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins = ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:3000', 'http://127.0.0.1:3000'];
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(null, true);
-    }
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
-  credentials: true,
-  optionsSuccessStatus: 200
-};
+// Simple CORS setup for local development
+app.use(cors());
 
-app.use(cors(corsOptions));
-
-
-app.options('*', cors(corsOptions));
+// Enable pre-flight requests for all routes
+app.options('*', cors());
 app.use(express.json());
 
 
@@ -53,7 +39,7 @@ mongoose
 
 app.use(express.static(path.join(__dirname, '../TImeofSciFi')));
 
-app.use('/auth', authRoutes);
+app.use('/auth', routes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../TimeofScifi/home.html'));

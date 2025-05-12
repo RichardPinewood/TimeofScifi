@@ -1,5 +1,3 @@
-
-
 let token = localStorage.getItem('token');
 let selectedType = '', selectedGenre = '';
 
@@ -147,6 +145,10 @@ function displayRecommendations(recommendations, container) {
     try {
       const card = template.content.cloneNode(true);
       
+      const cardElement = card.querySelector('.grid-card');
+      if (cardElement && rec._id) {
+        cardElement.dataset.id = rec._id;
+      }
 
       const elements = {
         '.card-title': rec.title || 'No Title',
@@ -175,6 +177,18 @@ function displayRecommendations(recommendations, container) {
         } else {
           tagsContainer.style.display = 'none';
         }
+      }
+      
+      // Add direct event listener to the comments button
+      const commentsButton = card.querySelector('.comments-button');
+      if (commentsButton && cardElement && rec._id) {
+        // Convert the button to an anchor tag that redirects to discussion.html
+        commentsButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Redirect to the discussion page with the recommendation ID as a URL parameter
+          window.location.href = `discussion.html?id=${rec._id}`;
+        });
       }
       
       container.appendChild(card);

@@ -18,7 +18,7 @@
       margin: 40px 0;
       padding: 20px;
       border-radius: 16px;
-      color: black;
+      color: white;
     }
 
     .recommendations-container p {
@@ -28,12 +28,14 @@
 
     .recommendations-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
+      grid-auto-rows: min-content;
     }
 
     .grid-card-wrapper {
       height: 100%;
+      display: flex;
     }
 
     .grid-card {
@@ -45,6 +47,9 @@
       height: 100%;
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .grid-card::before {
@@ -60,15 +65,15 @@
     .grid-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      border-color: rgba(255, 209, 102, 0.6);
     }
 
     .grid-card .card-body {
-      padding: 20px;
+      padding: 22px;
       color: #f8f8f8;
       display: flex;
       flex-direction: column;
       height: 100%;
+      min-height: 220px;
     }
 
     .card-header-info {
@@ -105,18 +110,25 @@
     .grid-card .card-title {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #ffffff;
       letter-spacing: 0.3px;
-      margin: 0;
+      margin: 0 0 8px 0;
+      line-height: 1.4;
+      overflow-wrap: break-word;
     }
 
     .grid-card .card-text {
       color: #b0b0b0;
       font-size: 0.85rem;
       line-height: 1.5;
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
       flex-grow: 1;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
+      max-height: none;
+      min-height: 50px;
     }
 
     .search-section {
@@ -515,10 +527,6 @@
                 <button class="action-button">
                   <i class="far fa-bookmark"></i>
                   <span>Save</span>
-                </button>
-                <button class="action-button">
-                  <i class="far fa-thumbs-up"></i>
-                  <span>0</span>
                 </button>
               </div>
             </div>

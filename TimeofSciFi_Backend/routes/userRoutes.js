@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const Recommendation = require('../models/recommendations');
+const Comment = require('../models/comment');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -81,7 +82,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -137,6 +137,44 @@ router.get('/recommendations', async (req, res) => {
   }
 });
 
+router.get('/recommendations/:id', async (req, res) => {
+  try {
+    const recommendation = await Recommendation.findById(req.params.id)
+      .populate('author', 'username');
+      
+    if (!recommendation) {
+      return res.status(404).json({ message: 'Recommendation not found' });
+    }
+    
+    res.json(recommendation);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/discussion/:id', async (req, res) => {
+  try {
+    const recommendation = await Recommendation.findById(req.params.id)
+      .populate('author', 'username');
+      
+    if (!recommendation) {
+      return res.status(404).json({ message: 'Recommendation not found' });
+    }
+
+    const comments = await Comment.find({ recommendationId: req.params.id })
+      .populate('author', 'username')
+      .sort({ createdAt: -1 });
+    
+    res.json({
+      recommendation,
+      comments
+    });
+  } catch (error) {
+    console.error('Error in discussion endpoint:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.post('/recommendations', authenticateUser, async (req, res) => {
   try {
     const { title, description, type, tags } = req.body;
@@ -166,6 +204,97 @@ router.post('/recommendations', authenticateUser, async (req, res) => {
     res.status(201).json(savedRecommendation);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+router.get('/recommendations/:recommendationId/comments', async (req, res) => {
+  try {
+    const comments = await Comment.find({ 
+      recommendationId: req.params.recommendationId 
+    })
+    .populate('author', 'username')
+    .sort({ createdAt: -1 });
+    
+    res.json(comments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.post('/recommendations/:recommendationId/comments', authenticateUser, async (req, res) => {
+  try {
+    const { content, parentComment } = req.body;
+    
+    const recommendation = await Recommendation.findById(req.params.recommendationId);
+    if (!recommendation) {
+      return res.status(404).json({ message: 'Recommendation not found' });
+    }
+    
+    const comment = new Comment({
+      recommendationId: req.params.recommendationId,
+      author: req.user.id,
+      content,
+      parentComment: parentComment || null
+    });
+    
+    await comment.save();
+    
+    const populatedComment = await Comment.findById(comment._id)
+      .populate('author', 'username');
+      
+    res.status(201).json(populatedComment);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+router.post('/comments/:commentId/vote', authenticateUser, async (req, res) => {
+  try {
+    const { voteType } = req.body;
+    const comment = await Comment.findById(req.params.commentId);
+    
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+    
+    const userId = req.user.id;
+    
+    comment.upvotes = comment.upvotes.filter(id => id.toString() !== userId);
+    comment.downvotes = comment.downvotes.filter(id => id.toString() !== userId);
+    
+    if (voteType === 'upvote') {
+      comment.upvotes.push(userId);
+    } else if (voteType === 'downvote') {
+      comment.downvotes.push(userId);
+    }
+    
+    await comment.save();
+    res.json({ 
+      upvotes: comment.upvotes.length,
+      downvotes: comment.downvotes.length,
+      voteCount: comment.upvotes.length - comment.downvotes.length
+    });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+router.delete('/comments/:commentId', authenticateUser, async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+    
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+    
+    if (comment.author.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Not authorized to delete this comment' });
+    }
+    
+    await Comment.findByIdAndDelete(req.params.commentId);
+    res.status(200).json({ message: 'Comment deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
