@@ -148,6 +148,15 @@ function displayRecommendations(recommendations, container) {
       const cardElement = card.querySelector('.grid-card');
       if (cardElement && rec._id) {
         cardElement.dataset.id = rec._id;
+        
+        // Make the entire card clickable
+        cardElement.style.cursor = 'pointer';
+        cardElement.addEventListener('click', function(e) {
+          // Only navigate if the user didn't click on the save button
+          if (!e.target.closest('.action-button')) {
+            window.location.href = `discussion.html?id=${rec._id}`;
+          }
+        });
       }
 
       const elements = {
@@ -182,9 +191,9 @@ function displayRecommendations(recommendations, container) {
       // Add direct event listener to the comments button
       const commentsButton = card.querySelector('.comments-button');
       if (commentsButton && cardElement && rec._id) {
-        // Convert the button to an anchor tag that redirects to discussion.html
         commentsButton.addEventListener('click', function(e) {
           e.preventDefault();
+          e.stopPropagation(); // Prevent the card click event from also firing
           
           // Redirect to the discussion page with the recommendation ID as a URL parameter
           window.location.href = `discussion.html?id=${rec._id}`;
